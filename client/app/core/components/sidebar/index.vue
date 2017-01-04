@@ -27,6 +27,12 @@
 							i.fa.fa-comments
 						span.label {{ "Posts" | i18n }}
 
+				router-link(tag="li", to="/contracts")
+					a(:title="_('Contracts')")
+						span.icon
+							i.fa.fa-calendar-check-o
+						span.label {{ "Contracts" | i18n }}
+
 			.title {{ "Profile" | i18n }}
 			ul
 				li

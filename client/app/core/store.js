@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import session from "../modules/session/store";
 import devices from "../modules/devices/store";
 import posts from "../modules/posts/store";
+import contracts from "../modules/contracts/store";
 import counter from "../modules/counter/store";
 import profile from "../modules/profile/store";
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
 		counter,
 		devices,
 		posts,
+		contracts,
 		profile
 	}
 });

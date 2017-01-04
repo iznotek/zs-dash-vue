@@ -180,7 +180,5 @@ module.exports = {
 			token: null
 		}
 		
-	},
-
-	agendaTimer: "one minute"
+	}
 };
