@@ -63,3 +63,7 @@ data
 
 # Typings definitions
 typings
+
+# Environment files
+*.env
+.env
