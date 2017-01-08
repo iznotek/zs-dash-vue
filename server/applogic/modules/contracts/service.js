@@ -100,8 +100,17 @@ module.exports = {
 				return this.collection.findById(ctx.modelID).exec()
 				.then((doc) => {
 					// TODO: Check ctx.params for null
+					// doc.title = ctx.params.title;
 					
 					doc.editedAt = Date.now();
+					doc.customer = ctx.params.customer;
+					doc.description = ctx.params.description;
+					doc.customer_email = ctx.params.customer_email;
+					doc.customer_terms = ctx.params.customer_terms;
+					doc.renewal_period = ctx.params.renewal_period;
+					doc.cancellation_terms = ctx.params.cancellation_terms;
+					doc.billing_type = ctx.params.billing_type;
+					doc.resources = ctx.params.resources;
 					return doc.save();
 				})
 				.then((doc) => {

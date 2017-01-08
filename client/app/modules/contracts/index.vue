@@ -89,7 +89,8 @@
 				schema: {
 					fields: [
 						{
-							type: "text",
+							type: "input",
+							inputType: "text",
 							label: this._("Customer"),
 							model: "customer",
 							featured: true,
@@ -115,8 +116,9 @@
 							placeholder: this._("CustomerEmail"),
 							validator: validators.string
 						},
-						{
-							type: "text",
+						{							
+							type: "input",
+							inputType: "text",
 							label: this._("CustomerTerms"),
 							model: "customer_terms",
 							featured: true,
@@ -125,31 +127,34 @@
 							validator: validators.string
 						},
 						{
-							type: "text",
+							type: "input",
+							inputType: "number",
 							label: this._("RenewalPeriod"),
 							model: "renewal_period",
 							featured: true,
 							required: true,
 							placeholder: this._("RenewalPeriod"),
-							validator: validators.string
+							validator: validators.number
 						},
 						{
-							type: "text",
+							type: "input",
+							inputType: "number",
 							label: this._("CancellationTerms"),
 							model: "cancellation_terms",
 							featured: true,
 							required: true,
 							placeholder: this._("CancellationTerms"),
-							validator: validators.string
+							validator: validators.number
 						},
 						{
-							type: "text",
+							type: "input",
+							inputType: "number",
 							label: this._("BillingType"),
 							model: "billing_type",
 							featured: true,
 							required: true,
 							placeholder: this._("CancellationTerms"),
-							validator: validators.string
+							validator: validators.number
 						},
 						// {
 						// 	type: "dateTime",
