@@ -100,7 +100,6 @@ module.exports = {
 				return this.collection.findById(ctx.modelID).exec()
 				.then((doc) => {
 					// TODO: Check ctx.params for null
-					// doc.title = ctx.params.title;
 					
 					doc.editedAt = Date.now();
 					doc.customer = ctx.params.customer;

@@ -114,7 +114,7 @@
 							featured: true,
 							required: true,
 							placeholder: this._("CustomerEmail"),
-							validator: validators.string
+							validator: validators.email
 						},
 						{							
 							type: "input",
@@ -134,7 +134,7 @@
 							featured: true,
 							required: true,
 							placeholder: this._("RenewalPeriod"),
-							validator: validators.number
+							validator: validators.string
 						},
 						{
 							type: "input",
@@ -144,7 +144,7 @@
 							featured: true,
 							required: true,
 							placeholder: this._("CancellationTerms"),
-							validator: validators.number
+							validator: validators.string
 						},
 						{
 							type: "input",
@@ -153,8 +153,8 @@
 							model: "billing_type",
 							featured: true,
 							required: true,
-							placeholder: this._("CancellationTerms"),
-							validator: validators.number
+							placeholder: this._("BillingType"),
+							validator: validators.string
 						},
 						// {
 						// 	type: "dateTime",

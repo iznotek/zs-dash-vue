@@ -63,8 +63,15 @@ body {
 		width: $menuWidth;
 		font-size: 2.0em;
 		line-height: $headerHeight;
-		padding-left: 1.2rem;
 		vertical-align: middle;
+
+		.logo-img {
+			background-image: $logoImg;
+			background-position: center center;
+			background-size: cover;
+			width: $menuWidth;
+			height: 75px;
+		}
 
 		a {
 			color: $headerTextColor;

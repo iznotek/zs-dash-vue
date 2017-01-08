@@ -1,9 +1,7 @@
 <template lang="pug">
 	.logo
 		a.nav-item(href="#")
-			span 
-				strong VEM
-				| App
+			.logo-img
 </template>
 
 <script>
