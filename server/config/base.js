@@ -11,7 +11,7 @@ module.exports = {
 		keywords: pkg.keywords.join(","),
 		url: "http://localhost:" + (process.env.PORT || 3000) + "/",
 		//googleAnalyticsID: 'UA-xxxxx-x',
-		contactEmail: "hello@vem-app.com"
+		contactEmail: "hello@affinidash.com"
 	},
 
 	ip: process.env.NODE_IP || "0.0.0.0",
@@ -68,7 +68,7 @@ module.exports = {
 	cacheTimeout: 5 * 60, // 5 mins
 
 	mailer: {
-		from: "noreply@vem-app.com"
+		from: "noreply@affinidash.com",
 		/*
 		transport: "smtp",
 		smtp: {
@@ -80,16 +80,16 @@ module.exports = {
 			}
 		}*/
 
-		/*transport: "smtp",
+		transport: "smtp",
 		smtp: {
 			host: "smtp.gmail.com",
 			port: 465,
 			secure: true,
 			auth: {
-				user: "",
-				pass: ""
+				user: process.env.MAIL_USER,
+				pass: process.env.MAIL_PASS
 			}
-		}*/
+		}
 
 		/*
 		transport: "mailgun",
