@@ -3,19 +3,10 @@
 		h2.title {{ _('Contracts') }}
 
 		.header.flex.row.justify-space-between
-			.group.sort
-				a.link(@click="changeSort('-votes')", :class="{ active: sort == '-votes' }") {{ _("Hot") }}
-				a.link(@click="changeSort('-views')", :class="{ active: sort == '-views' }") {{ _("MostViewed") }}
-				a.link(@click="changeSort('-createdAt')", :class="{ active: sort == '-createdAt' }") {{ _("New") }}
-
 			button.button.primary(@click="newPost")
 				span.icon
 					i.fa.fa-plus
 				span {{ _("NewPost") }}
-
-			.group.filter
-				a.link(@click="changeViewMode('all')", :class="{ active: viewMode == 'all' }") {{ _("All") }}
-				a.link(@click="changeViewMode('my')", :class="{ active: viewMode == 'my' }") {{ _("Mine") }}
 
 		.postForm(v-if="showForm")
 			vue-form-generator(:schema='schema', :model='model', :options='{}', :multiple="false", ref="form", :is-new-model="isNewPost")
