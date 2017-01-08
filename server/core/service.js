@@ -80,7 +80,7 @@ class Service {
 		// Wrap the handler function to implement caching feature
 		let cachingWrapper = function(action, handler) {
 			return function(ctx) {
-				let cacheKey = self.getCacheKey(action.name, ctx.params);
+				let cacheKey = self.getCacheKey(action.name, ctx.user.id);
 
 				return self.getFromCache(cacheKey)
 				.then((cachedJSON) => {

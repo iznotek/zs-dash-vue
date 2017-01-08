@@ -58,7 +58,7 @@ module.exports = {
 			handler(ctx) {
 				ctx.assertModelIsExist(ctx.t("app:PostNotFound"));
 
-				return Post.findByIdAndUpdate(ctx.modelID, { $inc: { views: 1 } }).exec().then( (doc) => {
+				return Post.findByIdAndUpdate(ctx.modelID, { $inc: { views: 1 }}).exec().then( (doc) => {
 					return this.toJSON(doc);
 				})
 				.then((json) => {

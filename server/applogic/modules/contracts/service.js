@@ -31,7 +31,18 @@ module.exports = {
 		find: {
 			cache: true,
 			handler(ctx) {
-				let query = Contract.find();
+				let filter = {};
+
+				//TODO: Implement this filter, with "My Teams" or something instead of "All"?
+				// if (ctx.params.filter == "my") 
+				// 	filter.author = ctx.user.id;
+				// else if (ctx.params.author != null) { 
+				// 	filter.author = this.personService.decodeID(ctx.params.author);
+				// }
+
+				filter.author = ctx.user.id
+				logger.debug('Current User: ' + JSON.stringify(ctx.user));
+				let query = Contract.find(filter);
 
 				return ctx.queryPageSort(query).exec().then( (docs) => {
 					return this.toJSON(docs);
