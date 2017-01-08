@@ -75,6 +75,11 @@ let ContractSchema = new Schema({
 	editedAt: {
 		type: Date
 	},
+	author: {
+		type: Number,
+		required: "Please fill in an author ID",
+		ref: "User"
+	},
 	metadata: {}
 
 }, schemaOptions);

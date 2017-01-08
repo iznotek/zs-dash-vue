@@ -264,7 +264,7 @@
 			},
 
 			createdAgo(post) {
-				return this._("CreatedAgoByName", { ago: Vue.filter("ago")(post.createdAt)} );
+				return this._("CreatedAgoByName", { ago: Vue.filter("ago")(post.createdAt), name: post.author.fullName } );
 			},
 
 			editedAgo(post) {

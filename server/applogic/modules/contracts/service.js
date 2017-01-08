@@ -20,9 +20,11 @@ module.exports = {
 		role: "user",
 		collection: Contract,
 
-		modelPropFilter: "code name description customer customer_email customer_terms renewal_period cancellation_terms billing_type contract_start contract_end resources views editedAt",
+		modelPropFilter: "code author name description customer customer_email customer_terms renewal_period cancellation_terms billing_type contract_start contract_end resources views editedAt",
 		
-		modelPopulates: null
+		modelPopulates: {
+			"author": "persons"
+		}
 	},
 
 	actions: {
@@ -74,6 +76,7 @@ module.exports = {
 					contract_start: ctx.params.contract_start,
 					contract_end: ctx.params.contract_end,
 					createdAt: now,
+					author: ctx.user.id,
 					resources: ctx.params.resources,
 				});
 
