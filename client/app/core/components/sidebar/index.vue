@@ -9,24 +9,6 @@
 							i.fa.fa-home
 						span.label {{ "Home" | i18n }}
 
-				router-link(tag="li", to="/counter")
-					a(:title="_('Demo')")
-						span.icon
-							i.fa.fa-tasks
-						span.label {{ "Demo" | i18n }}
-
-				router-link(tag="li", to="/devices")
-					a(:title="_('Devices')")
-						span.icon
-							i.fa.fa-tablet
-						span.label {{ "Devices" | i18n }}
-
-				router-link(tag="li", to="/posts")
-					a(:title="_('Posts')")
-						span.icon
-							i.fa.fa-comments
-						span.label {{ "Posts" | i18n }}
-
 				router-link(tag="li", to="/contracts")
 					a(:title="_('Contracts')")
 						span.icon
