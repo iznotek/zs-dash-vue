@@ -9,11 +9,29 @@
 							i.fa.fa-home
 						span.label {{ "Home" | i18n }}
 
-				router-link(tag="li", to="/contracts")
-					a(:title="_('Contracts')")
+				router-link(tag="li", to="/organizations")
+					a(:title="_('Organizations')")
+						span.icon
+							i.fa.fa-sitemap 
+						span.label {{ "Organizations" | i18n }}
+
+				router-link(tag="li", to="/relationships")
+					a(:title="_('Relationships')")
+						span.icon
+							i.fa.fa-heart 
+						span.label {{ "Relationships" | i18n }}
+
+				router-link(tag="li", to="/goals")
+					a(:title="_('Goals')")
 						span.icon
 							i.fa.fa-calendar-check-o
-						span.label {{ "Contracts" | i18n }}
+						span.label {{ "Goals" | i18n }}
+
+				router-link(tag="li", to="/contracts")
+					a(:title="_('Retainers')")
+						span.icon
+							i.fa.fa-handshake-o
+						span.label {{ "Retainers" | i18n }}
 
 			.title {{ "Profile" | i18n }}
 			ul

@@ -116,11 +116,6 @@ fragment personFields on Person {
   avatar
   lastLogin
   locale
-  
-  posts(sort: "-createdAt") {
-    code
-    title
-  }
 }
 
 */
