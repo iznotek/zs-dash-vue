@@ -43,11 +43,9 @@
 
 		.footer
 			.social
-				a(href="", target="_blank")
-					i.fa.fa-facebook
-				a(href="https://twitter.com/Icebobcsi", target="_blank")
+				a(href="https://twitter.com/affinidash", target="_blank")
 					i.fa.fa-twitter
-				a(href="https://github.com/icebob/vue-express-mongo-boilerplate", target="_blank")
+				a(href="https://github.com/zingsight/zs-dash-vue", target="_blank")
 					i.fa.fa-github
 			.copyright &copy; Copyright, 2016
 </template>
