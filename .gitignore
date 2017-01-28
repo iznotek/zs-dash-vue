@@ -48,6 +48,9 @@ bower_components
 *.sublime-project
 *.sublime-workspace
 
+# VS Code
+settings.json
+
 # SVN
 .svn
 

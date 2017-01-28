@@ -57,6 +57,8 @@
 	"MostViewed": "Most viewed",	
 	"New": "New",	
 	"NewPost": "New post",	
+	"NewContract": "New contract",	
+	"NewOrganization": "New organization",	
 	"AllPosts": "All posts",	
 	"MyPosts": "My posts",	
 	"ViewsCount": " Views: {{count}}",	

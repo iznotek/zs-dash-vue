@@ -11,6 +11,7 @@ let service = new Service("organizations");
 export const getRows = function ({commit, state}, loadMore) {
 	commit(FETCHING, true);
 	return service.rest("find", { filter: state.viewMode, sort: state.sort, limit: 10, offset: state.offset }).then((data) => {
+		console.log("Org result (action.js): " + data.length);
 		if (data.length == 0)
 			commit(NO_MORE_ITEMS);
 		else
@@ -18,7 +19,7 @@ export const getRows = function ({commit, state}, loadMore) {
 	}).catch((err) => {
 		toastr.error(err.message);
 	}).then(() => {
-		commit(FETCHING, false);		
+		commit(FETCHING, false);
 	});
 };
 

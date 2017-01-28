@@ -1,4 +1,5 @@
 export function organizations(state) {
+	console.log('Num of orgs (getters.js): ' + state.rows.length);
 	return state.rows;
 }
 
