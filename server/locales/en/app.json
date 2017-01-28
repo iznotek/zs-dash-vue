@@ -32,6 +32,9 @@
 	"DeviceNameUpdated": "Device '{{data.name}}' updated by {{user.fullName}}!",
 	"DeviceNameDeleted": "Device '{{data.name}}' deleted by {{user.fullName}}!",
 
+
+	"OrganizationNotFound": "Organization Not Found!",
+
 	"DeviceNameCannotBeBlank": "Device name cannot be blank!",
 
 	"UserNotFound": "User not found!",

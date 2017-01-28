@@ -45,6 +45,7 @@ export const saveRow = function(store, model) {
 };
 
 export const updateRow = function(store, model) {
+	console.log('Trying to update Contract: ' + JSON.stringify(model));
 	service.rest("update", model).then((data) => {
 		updated(store, data);
 	}).catch((err) => {

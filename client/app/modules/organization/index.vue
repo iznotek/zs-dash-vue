@@ -17,7 +17,7 @@
 
 
 		transition-group.posts(name="post", tag="ul")
-			li(v-for="post of organizations", :key="post.name")
+			li(v-for="post of organizations", :key="post.code")
 				article.media
 					.media-left
 

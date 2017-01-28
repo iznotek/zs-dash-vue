@@ -20,7 +20,7 @@ module.exports = {
 		role: "user",
 		collection: Organization,
 
-		modelPropFilter: "name desc logo website createdAt editedAt",
+		modelPropFilter: "code name desc logo website createdAt editedAt",
 		
 		modelPopulates: {
 		}
@@ -101,7 +101,10 @@ module.exports = {
 		update: {
 			permission: C.PERM_OWNER,
 			handler(ctx) {
-				ctx.assertModelIsExist(ctx.t("app:OrganizationNotFound"));
+				logger.info('Trying to find and update Org, ID: ' + ctx.modelID);
+				console.log('Trying to find and update Org, ID: ' + ctx.modelID);
+
+				// ctx.assertModelIsExist(ctx.t("app:OrganizationNotFound"));
 				this.validateParams(ctx);
 
 				return this.collection.findById(ctx.modelID).exec()
@@ -109,10 +112,10 @@ module.exports = {
 					// TODO: Check ctx.params for null
 					
 					doc.editedAt = Date.now();
-					name = ctx.params.name;
-					desc = ctx.params.desc;
-					logo = ctx.params.logo;
-					website = ctx.params.website;
+					doc.name = ctx.params.name;
+					doc.desc = ctx.params.desc;
+					doc.logo = ctx.params.logo;
+					doc.website = ctx.params.website;
 					return doc.save();
 				})
 				.then((doc) => {
@@ -207,6 +210,10 @@ module.exports = {
 		types: `
 			type Organization {
 				code: String!
+				name: String
+				desc: String
+				logo: String
+				website: String
 				createdAt: Timestamp
 				editedAt: Timestamp
 			}
