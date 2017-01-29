@@ -132,6 +132,12 @@ let UserSchema = new Schema({
 		type: Number,
 		default: 1
 	},
+
+	organizations: [{
+		type: Number,
+		required: "Please fill in an Organization ID",
+		ref: "Organization"
+	}],
 	
 	metadata: {}
 

@@ -3,10 +3,12 @@
 let logger 		= require("../../../core/logger");
 let config 		= require("../../../config");
 let C 	 		= require("../../../core/constants");
+let db	    		= require("../../../core/mongo");
 
 let _			= require("lodash");
 
 let Organization	= require("./models/organization");
+let User	= require("../persons/models/user");
 
 module.exports = {
 	settings: {
@@ -86,6 +88,7 @@ module.exports = {
 
 				return organization.save()
 				.then((doc) => {
+					this.updateUserWithOrg(ctx, ctx.user.id, doc.id);
 					return this.toJSON(doc);
 				})
 				.then((json) => {
@@ -168,6 +171,11 @@ module.exports = {
 			
 			if (ctx.hasValidationErrors())
 				throw ctx.errorBadRequest(C.ERR_VALIDATION_ERROR, ctx.validationErrors);			
+		},
+
+		updateUserWithOrg(ctx, userId, orgId) {
+			logger.debug('User with id: ' + userId + ' arez creating org with id: ' + orgId);
+			User.findByIdAndUpdate(userId, {$push: {"organizations": orgId}}).exec();
 		}
 
 	},
