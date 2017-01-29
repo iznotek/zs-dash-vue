@@ -20,10 +20,9 @@ module.exports = {
 		role: "user",
 		collection: Relationship,
 
-		modelPropFilter: "code author name description customer customer_email customer_terms renewal_period cancellation_terms billing_type contract_start contract_end resources views editedAt",
+		modelPropFilter: "code author name desc customer editedAt",
 		
 		modelPopulates: {
-			"goals": "goals"
 		}
 	},
 
@@ -33,9 +32,8 @@ module.exports = {
 			handler(ctx) {
 				let filter = {};
 
-				filter.author = ctx.user.id
-				logger.debug('Current User: ' + JSON.stringify(ctx.user));
-				let query = Contract.find(filter);
+				// filter.author = ctx.user.id
+				let query = Relationship.find(filter);
 
 				return ctx.queryPageSort(query).exec().then( (docs) => {
 					return this.toJSON(docs);
@@ -51,9 +49,9 @@ module.exports = {
 			cache: true, // if true, we don't increment the views!
 			permission: C.PERM_PUBLIC,
 			handler(ctx) {
-				ctx.assertModelIsExist(ctx.t("app:ContractNotFound"));
+				ctx.assertModelIsExist(ctx.t("app:RelationshipNotFound"));
 
-				return Contract.findByIdAndUpdate(ctx.modelID, { $inc: { views: 1 } }).exec().then( (doc) => {
+				return Relationship.findByIdAndUpdate(ctx.modelID, { $inc: { views: 1 } }).exec().then( (doc) => {
 					return this.toJSON(doc);
 				})
 				.then((json) => {
@@ -68,23 +66,15 @@ module.exports = {
 
 				var now = Date.now();
 
-				let contract = new Contract({
+				let relationship = new Relationship({
 					name: ctx.params.name,
-					description: ctx.params.description,
-					customer: ctx.params.customer,
-					customer_email: ctx.params.customer_email,
-					customer_terms: ctx.params.customer_terms,
-					renewal_period: ctx.params.renewal_period,
-					cancellation_terms: ctx.params.cancellation_terms,
-					billing_type: ctx.params.billing_type,
-					contract_start: ctx.params.contract_start,
-					contract_end: ctx.params.contract_end,
+					desc: ctx.params.desc,
 					createdAt: now,
+					editedAt: now,
 					author: ctx.user.id,
-					resources: ctx.params.resources,
 				});
 
-				return contract.save()
+				return relationship.save()
 				.then((doc) => {
 					return this.toJSON(doc);
 				})
@@ -101,7 +91,7 @@ module.exports = {
 		update: {
 			permission: C.PERM_OWNER,
 			handler(ctx) {
-				ctx.assertModelIsExist(ctx.t("app:ContractNotFound"));
+				ctx.assertModelIsExist(ctx.t("app:RelationshipNotFound"));
 				this.validateParams(ctx);
 
 				return this.collection.findById(ctx.modelID).exec()
@@ -135,9 +125,9 @@ module.exports = {
 		remove: {
 			permission: C.PERM_OWNER,
 			handler(ctx) {
-				ctx.assertModelIsExist(ctx.t("app:ContractNotFound"));
+				ctx.assertModelIsExist(ctx.t("app:RelationshipNotFound"));
 
-				return Contract.remove({ _id: ctx.modelID })
+				return Relationship.remove({ _id: ctx.modelID })
 				.then(() => {
 					return ctx.model;
 				})
@@ -159,13 +149,13 @@ module.exports = {
 		 */
 		validateParams(ctx, strictMode) {
 
-			// TODO: Add validate checks for Contract
+			// TODO: Add validate checks for Relationship
 
 			// if (strictMode || ctx.hasParam("title"))
-			// 	ctx.validateParam("title").trim().notEmpty(ctx.t("app:ContractTitleCannotBeEmpty")).end();
+			// 	ctx.validateParam("title").trim().notEmpty(ctx.t("app:RelationshipTitleCannotBeEmpty")).end();
 
 			// if (strictMode || ctx.hasParam("content"))
-			// 	ctx.validateParam("content").trim().notEmpty(ctx.t("app:ContractContentCannotBeEmpty")).end();
+			// 	ctx.validateParam("content").trim().notEmpty(ctx.t("app:RelationshipContentCannotBeEmpty")).end();
 			
 			if (ctx.hasValidationErrors())
 				throw ctx.errorBadRequest(C.ERR_VALIDATION_ERROR, ctx.validationErrors);			
@@ -181,7 +171,7 @@ module.exports = {
 	 */
 	ownerChecker(ctx) {
 		return new Promise((resolve, reject) => {
-			ctx.assertModelIsExist(ctx.t("app:ContractNotFound"));
+			ctx.assertModelIsExist(ctx.t("app:RelationshipNotFound"));
 			// ctx.model.author.code == ctx.user.code || 
 			if (ctx.isAdmin()) 
 				resolve();
@@ -192,7 +182,7 @@ module.exports = {
 
 	init(ctx) {
 		// Fired when start the service
-		this.contractService = ctx.services("contracts");
+		this.relationshipService = ctx.services("relationships");
 	},
 
 	socket: {
@@ -204,46 +194,36 @@ module.exports = {
 	graphql: {
 
 		query: `
-			contracts(limit: Int, offset: Int, sort: String): [Contract]
-			contract(code: String): Contract
+			relationships(limit: Int, offset: Int, sort: String): [Relationship]
+			relationship(code: String): Relationship
 		`,
 
 		types: `
-			type Contract {
+			type Relationship {
 				code: String!
 				name: String
-				description: String
-				customer: String
-				customer_email: String
-				customer_terms: String
-				renewal_period: Int
-				cancellation_terms: Int
-				billing_type: Int
-				contract_start: Timestamp
-				contract_end: Timestamp
-				resources: String
-				views: Int
+				desc: String
 				createdAt: Timestamp
 				editedAt: Timestamp
 			}
 		`,
 
 		mutation: `
-			contractCreate(name: String!): Contract
-			contractUpdate(code: String!): Contract
-			contractRemove(code: String!): Contract
+			relationshipCreate(name: String!): Relationship
+			relationshipUpdate(code: String!): Relationship
+			relationshipRemove(code: String!): Relationship
 		`,
 
 		resolvers: {
 			Query: {
-				contracts: "find",
-				contract: "get"
+				relationships: "find",
+				relationship: "get"
 			},
 
 			Mutation: {
-				contractCreate: "create",
-				contractUpdate: "update",
-				contractRemove: "remove"
+				relationshipCreate: "create",
+				relationshipUpdate: "update",
+				relationshipRemove: "remove"
 			}
 		}
 	}

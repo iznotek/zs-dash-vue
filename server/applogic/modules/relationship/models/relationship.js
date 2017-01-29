@@ -27,7 +27,7 @@ let RelationshipSchema = new Schema({
 		type: String,
 		trim: true
 	},
-	description: {
+	desc: {
 		type: String,
 		trim: true
 	},
@@ -42,11 +42,6 @@ let RelationshipSchema = new Schema({
 		required: "Please fill in an author ID",
 		ref: "User"
 	},
-	goals: [{
-		type: Number,
-		required: "Please fill in a goal ID",
-		ref: "Goal"
-	}],
 	metadata: {}
 
 }, schemaOptions);
